@@ -17,39 +17,55 @@ public class Tanque extends javax.swing.JPanel {
      */
     public Tanque() {
         initComponents();
+        
+        estado = EstadoTanque.VACIO;
+        jLabelVacio.setVisible(true);
+        jLabelMedio.setVisible(false);
+        jLabelLleno.setVisible(false);
+        
 
     }
 
     public void llenarMedio() {
-        switch (EstadoTanque.VACIO) {
+        switch (estado) {
             case VACIO:
+                estado = EstadoTanque.MEDIO;
                 jLabelVacio.setVisible(false);
-                jLabelMedio.setVisible(true);
                 jLabelLleno.setVisible(false);
+                jLabelMedio.setVisible(true);
                 break;
 
             case MEDIO:
+                estado = EstadoTanque.LLENO;
                 jLabelVacio.setVisible(false);
                 jLabelMedio.setVisible(false);
                 jLabelLleno.setVisible(true);
+                break;
+          /*case LLENO:
+                jLabelVacio.setVisible(false);
+                jLabelMedio.setVisible(false);
+                jLabelLleno.setVisible(true);*/
+
 
         }
 
     }
 
     public void vaciarMedio() {
-        switch (EstadoTanque.LLENO) {
+        switch (estado) {
             case LLENO:
+                estado = EstadoTanque.MEDIO;
                 jLabelVacio.setVisible(false);
-                jLabelMedio.setVisible(true);
                 jLabelLleno.setVisible(false);
+                jLabelMedio.setVisible(true);
                 break;
 
             case MEDIO:
-                jLabelVacio.setVisible(true);
+                estado = EstadoTanque.VACIO;
                 jLabelMedio.setVisible(false);
                 jLabelLleno.setVisible(false);
-
+                jLabelVacio.setVisible(true);
+                break;
         }
 
     }
